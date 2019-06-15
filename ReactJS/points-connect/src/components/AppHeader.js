@@ -4,10 +4,11 @@ import {
     withRouter
 } from 'react-router-dom';
 import '../assets/css/AppHeader.css';
-import { Avatar, Layout, Menu, Dropdown, Icon } from 'antd';
+import { Avatar, Layout, Menu, Dropdown } from 'antd';
 import { getAvatarColor } from '../util/Colors';
 const Header = Layout.Header;
 const SubMenu = Menu.SubMenu;
+
     
 class AppHeader extends Component {
     constructor(props) {
@@ -57,7 +58,7 @@ class AppHeader extends Component {
             <Header className="app-header">
             <div className="container">
               <div className="app-title" >
-                <Link to="/">Point S Connect</Link>
+                <Link to="/"> <img src={require("../images/logo.jpg")} alt="Logo" /> </Link>
               </div>
               <Menu
                 className="app-menu"
