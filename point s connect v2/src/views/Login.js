@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function LoginForm() {
+function LoginForm(props) {
   const classes = useStyles();
         return (
           <Grid container component="main" className={classes.root}>
@@ -68,9 +68,10 @@ function LoginForm() {
                     required
                     fullWidth
                     id="email"
-                    label="Email Address"
-                    name="email"
+                    label="Email Address or Username"
+                    name="usernameOrEmail"
                     autoComplete="email"
+                    onChange={props.onChange}
                     autoFocus
                   />
                   <TextField
@@ -82,6 +83,7 @@ function LoginForm() {
                     label="Password"
                     type="password"
                     id="password"
+                    onChange={props.onChange}
                     autoComplete="current-password"
                   />
                   <Grid container>
@@ -104,6 +106,7 @@ function LoginForm() {
                     variant="contained"
                     color="primary"
                     className={classes.submit}
+                    onClick={props.handleSubmit}
                   >
                     Sign In
                   </Button>
@@ -114,33 +117,49 @@ function LoginForm() {
         );
 }
 
+
 class Login extends Component {
   constructor(props) {
       super(props);
       this.handleSubmit = this.handleSubmit.bind(this);
-      
+      this.handleChange= this.handleChange.bind(this);
+      this.state = {
+        username: "",
+        password: "",
+      }
   }
   
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
 
   handleSubmit(event) {
-      event.preventDefault();   
-      this.props.form.validateFields((err, values) => {
-          if (!err) {
-              const loginRequest = Object.assign({}, values);
-              login(loginRequest)
-              .then(response => {
-                  localStorage.setItem(ACCESS_TOKEN, response.accessToken);
-                  this.props.onLogin();
-              }).catch(error => {
-                
-              });
-          }
-      });
+    const loginRequest =  {
+      username: this.state.username,
+      password: this.state.password
+    };
+    login(loginRequest)
+    .then(response => {
+        localStorage.setItem(ACCESS_TOKEN, response.accessToken);
+        this.props.onLogin();
+    }).catch(error => {
+      
+    });
+          
   }
 
   render() {
+    const {authenticated, ...props} = this.props;
+        if(authenticated)
+            return <Redirect
+            to={{
+              pathname: '/',
+              state: { from: props.location }
+            }} 
+          /> 
       return (
-          <LoginForm />
+          <LoginForm handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
       );
   }
 }
