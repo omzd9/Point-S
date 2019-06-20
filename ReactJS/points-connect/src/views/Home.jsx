@@ -3,7 +3,7 @@ import "antd/dist/antd.css";
 import '../assets/css/Home.css'
 import '../assets/css/modern-business.css'
 import "../assets/css/Slid.css"
-
+import { API_BASE_URL} from '../constants';
 import CardTemp from "../components/CardTemp";
 import Slid from "../components/Slid";
 class Home extends Component {
@@ -16,7 +16,7 @@ class Home extends Component {
 
             }
        
-        //const backgroundimg ={'backgroundImage':'http://placehold.it/1900x1080'};
+        
         this.divStyle = {
             marginTop : '100px',
             
@@ -30,7 +30,7 @@ class Home extends Component {
         let events,url,response;
        
         // events
-        url = "http://localhost:8080/Accueil/events";
+        url = API_BASE_URL +"/Accueil/events";
         response = await fetch(url);
         events  = await response.json().then(results=> {return results});
      

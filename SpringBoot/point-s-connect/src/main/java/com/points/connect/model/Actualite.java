@@ -52,18 +52,16 @@ public class Actualite {
     @Lob
     private String description;
     
-    /*public Actualite(String title,String fileName,Date cloture,Date enregistrement,String description)
+    public Actualite(String title,String fileName,Date cloture,Date enregistrement,String description,String content)
     {
     	this.cloture=cloture;
     	this.description=description;
     	this.enregistrement=enregistrement;
     	this.fileName=fileName;
     	this.title=title;
+    	this.content=content;
     }
-    public Actualite()
-    {
-    	
-    }*/
+  
 	
 
 }

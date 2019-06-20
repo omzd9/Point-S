@@ -1,8 +1,10 @@
 package com.points.connect.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,11 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.points.connect.model.Actualite;
 import com.points.connect.model.venteFlash;
-import com.points.connect.payload.UploadFileResponse;
 import com.points.connect.repository.ActualiteRepository;
 import com.points.connect.repository.venteFlashRepository;
 import com.points.connect.service.FileStorageService;
@@ -23,11 +23,14 @@ import com.points.connect.service.FileStorageService;
 
 
 @RestController
-@RequestMapping("/Accueil")
+@RequestMapping("/api/Accueil")
 public class Accueil {
 	
 	@Autowired
 	private ActualiteRepository actualitesTable;
+	
+	@Autowired
+	private venteFlashRepository promoTable;
 	
 	@Autowired
     private FileStorageService fileStorageService;
@@ -35,23 +38,63 @@ public class Accueil {
 	@Autowired
 	private venteFlashRepository venteFlashTable;
 	
-   /* @PostMapping("/uploadActualite")
-    public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
-        String fileName = fileStorageService.storeFile(file);
-        Date d1= new Date();
-        Date d2= new Date();
-
+    @PostMapping("/addEvent")
+    public String uploadEvent(@RequestParam("file") MultipartFile file,@RequestParam("description") String desc,
+    		@RequestParam("title") String title,@RequestParam("content") String content,
+    		@RequestParam("date") String date) {
+        try {
+    	String fileName = fileStorageService.storeFile(file,true);
+    	
+        Date cloture = new  SimpleDateFormat("yyyy-mm-dd").parse(date);
+        Date today = new Date();
         //(String title,String fileName,Date cloture,Date enregistrement,String description)
-        Actualite ac = new Actualite("test title",fileName,d1,d2,"test Description");
-        actualitesTable.save(ac);
-        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/downloadFile/")
-                .path(fileName)
-                .toUriString();
+       Actualite act = new Actualite(title,fileName,cloture,today,desc,content);
+       List<Long> ids = actualitesTable.findByFileName(fileName);
+       if(ids.isEmpty())
+       {
+        actualitesTable.save(act);
+        	return "row created" ;
+        }
+       else {
+    	  act.setId(ids.get(0));
+    	  actualitesTable.save(act);
+    	  return "row updated";
 
-        return new UploadFileResponse(fileName, fileDownloadUri,
-                file.getContentType(), file.getSize());
-    }*/
+       }
+        }
+        catch(Exception e) {
+        	return e.getMessage();
+        	
+        }
+
+    }
+    @PostMapping("/addPromo")
+    public String uploadPromo(@RequestParam("file") MultipartFile file,@RequestParam("date") String date) {
+        try {
+    	String fileName = fileStorageService.storeFile(file,false);
+    	
+        Date cloture = new  SimpleDateFormat("yyyy-mm-dd").parse(date);
+        Date today = new Date();
+       venteFlash promo = new venteFlash(fileName,cloture,today);
+       List<Long> ids = promoTable.findByFileName(fileName);
+       if(ids.isEmpty())
+       {
+        promoTable.save(promo);
+        	return "row created" ;
+        }
+       else {
+    	  promo.setId(ids.get(0));
+    	  promoTable.save(promo);
+    	  return "row updated";
+
+       }
+        }
+        catch(Exception e) {
+        	return e.getMessage();
+        	
+        }
+
+    }
     
     @GetMapping("/events")
     public List<Actualite> uploadFilesEvents() {

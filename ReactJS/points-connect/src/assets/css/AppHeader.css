@@ -7,6 +7,8 @@
     line-height: 64px;
     font-size: 21px;
     display: inline-block;
+  
+
   }
   
   .app-title a:hover {
@@ -16,14 +18,17 @@
   .app-header {
     position: fixed;
     width: 100%;
+ 
     background-color: white;
     box-shadow: 0 2px 8px #f0f1f2;
     z-index: 10;
     padding: 0;
+    margin-top: -60px;
   }
   
   .app-menu {
     float: right;
+    
   }
   
   .app-menu > li {
@@ -41,6 +46,7 @@
 
   .profile-dropdown-menu {
     min-width: 180px;
+    
   }
 
   .profile-menu .user-full-name-info {

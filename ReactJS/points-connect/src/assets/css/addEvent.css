@@ -1,0 +1,27 @@
+.addEvent-container {
+ max-width: 520px;
+ margin: 0 auto;
+ margin-top: 40px;    
+}
+
+.addEvent-form-button {
+ width: 100%;
+ margin-top: 15px;
+}
+
+.addEvent-form-button[disabled], .addEvent-form-button[disabled]:hover, .addEvent-form-button[disabled]:focus {
+ opacity: 0.6;
+ color: #fff;
+ background-color: #1890ff;
+ border-color: #1890ff;
+}
+
+.addEvent-form-Input{
+ width: 100%;
+ padding: 30px;
+ margin-top: 5px;
+ margin-bottom: 5px;
+ -webkit-text-size-adjust: 100px;
+ 
+ 
+}

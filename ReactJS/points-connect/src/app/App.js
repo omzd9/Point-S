@@ -8,11 +8,14 @@ import {
 
 import { getCurrentUser } from '../util/APIUtils';
 import { ACCESS_TOKEN } from '../constants';
-
+import "../assets/css/App.css"
 import Login from '../views/Login';
 import Signup from '../views/Signup';
 import Profile from '../views/Profile';
 import Home from '../views/Home';
+import addEvent from '../views/addEvent';
+import addPromo from '../views/addPromo';
+
 import AppHeader from '../components/AppHeader';
 import NotFound from '../components/NotFound';
 import LoadingIndicator from '../components/LoadingIndicator';
@@ -33,7 +36,7 @@ class App extends Component {
     this.handleLogout = this.handleLogout.bind(this);
     this.loadCurrentUser = this.loadCurrentUser.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
-
+   
     notification.config({
       placement: 'topRight',
       top: 70,
@@ -94,7 +97,7 @@ class App extends Component {
     }
     return (
         <Layout className="app-container">
-          <AppHeader isAuthenticated={this.state.isAuthenticated} 
+          <AppHeader className="head" isAuthenticated={this.state.isAuthenticated} 
             currentUser={this.state.currentUser} 
             onLogout={this.handleLogout} />
 
@@ -105,7 +108,8 @@ class App extends Component {
                   render={(props) => <Login onLogin={this.handleLogin} {...props} />}></Route>
                 <Route path="/signup" component={Signup}></Route>
                 <Route path="/Home" component={Home}></Route>
-
+                <Route path="/CreateEvent" component={addEvent}></Route>
+                <Route path="/CreatePromo" component={addPromo}></Route>
                 <Route path="/users/:username" 
                   render={(props) => <Profile isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props}  />}>
                 </Route>

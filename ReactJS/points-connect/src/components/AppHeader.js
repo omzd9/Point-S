@@ -48,14 +48,14 @@ class AppHeader extends Component {
             <Menu.Item key="/login">
               <Link to="/login">Login</Link>
             </Menu.Item>,
-            <Menu.Item key="/signup">
+           <Menu.Item key="/signup">
               <Link to="/signup">Signup</Link>
             </Menu.Item>                  
           ];
         }
 
         return (
-            <Header className="app-header">
+          <Header className="app-header">
             <div className="container">
               <div className="app-title" >
                 <Link to="/"> <img src={require("../images/logo.jpg")} alt="Logo" /> </Link>

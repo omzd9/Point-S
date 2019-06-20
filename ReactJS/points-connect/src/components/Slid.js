@@ -1,35 +1,10 @@
 import React,{Component} from "react";
 import {Carousel,Icon} from "antd";
-//import "antd/dist/antd.css";
+import { API_BASE_URL} from '../constants';
 import "../assets/css/Slid.css"
 
 class Slid extends Component {
   
-  /*
-               <Carousel dots="true" dotPosition="Bottom" autoplay>
-              
-                  {   this.state.venteFlash.map(function(image)
-                           {
-                              return (
-                                 <div key={image.id}>
-                                   
-                                    
-                                          <img className="img-fluid" src={require("../uploads/venteFlash/"+image.fileName)} alt=""/>
-                                    
-                                    
-                                 </div>
-                                    )
-                                 
-                              })
-                       
-                           
-                  }     
-      
-                  </Carousel>
-            
-   */      
-   
-
   constructor(props) {
                super(props);
                this.next = this.next.bind(this);
@@ -49,7 +24,7 @@ class Slid extends Component {
                let url1,response1,venteFlash;
               
                //    venteFlash
-               url1 = "http://localhost:8080/Accueil/venteFlash";
+               url1 = API_BASE_URL + "/Accueil/venteFlash";
                response1 = await fetch(url1);
                venteFlash  = await response1.json().then(results=> {return results});
                
@@ -79,7 +54,7 @@ class Slid extends Component {
                      
                     <div style={this.s}> 
                    <Carousel ref={node => (this.carousel = node)} {...props}>
-                   {   this.state.venteFlash.map(function(image)
+                        {this.state.venteFlash.map(function(image)
                            {
                               return (
                                  <div key={image.id}>
@@ -93,8 +68,7 @@ class Slid extends Component {
                                  
                               })
                        
-                           
-                  }     
+                               }     
                    </Carousel>
                   </div>
                    <div className="centeredLeft">

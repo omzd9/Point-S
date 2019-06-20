@@ -32,6 +32,12 @@ public class venteFlash {
 	    
 	    @NotNull
 	    private Date enregistrement; 
+	    
+	    public venteFlash(String file,Date cloture,Date open){
+	    	this.fileName=file;
+	    	this.cloture=cloture;
+	    	this.enregistrement=open;
+	    }
 		
 	    
 }
