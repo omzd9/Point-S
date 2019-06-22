@@ -73,7 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/",
                         "/favicon.ico",
                         "/**/*.png",
-                        "/**/*.gif",         
+                        "/**/*.gif",
                         "/**/*.svg",
                         "/**/*.jpg",
                         "/**/*.html",
@@ -81,16 +81,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.js")
                         .permitAll()
                     .antMatchers("/api/auth/**")
+                    	.permitAll()
+                    .antMatchers("/api/tickets/**")
                         .permitAll()
-                    .antMatchers("/api/Accueil/addEvent")
+                    .antMatchers("/api/Accueil/**")
                         .permitAll()
-                     .antMatchers("/api/Accueil/addPromo")
-                        .permitAll()
-                     .antMatchers("/api/Accueil/events")
-                        .permitAll()
-                     .antMatchers("/api/Accueil/venteFlash")
-                        .permitAll()
+                    
                         
+                    .antMatchers("/api/products/**")
+                        .permitAll()
+                    .antMatchers("/api/**")
+                        .permitAll()
                     .antMatchers("/api/user/checkUsernameAvailability", "/api/user/checkEmailAvailability")
                         .permitAll()
                     .antMatchers(HttpMethod.GET, "/api/polls/**", "/api/users/**")

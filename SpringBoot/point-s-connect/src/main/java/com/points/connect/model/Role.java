@@ -38,4 +38,8 @@ public class Role {
     public void setName(RoleName name) {
         this.name = name;
     }
+    
+    public String toString() { 
+        return name.toString();
+     } 
 }

@@ -2,7 +2,6 @@ package com.points.connect.controller;
 
 import com.points.connect.exception.AppException;
 import com.points.connect.model.Role;
-import com.points.connect.model.RoleName;
 import com.points.connect.model.User;
 import com.points.connect.payload.ApiResponse;
 import com.points.connect.payload.JwtAuthenticationResponse;
@@ -82,7 +81,7 @@ public class AuthController {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
+        Role userRole = roleRepository.findByName(signUpRequest.getRoleName())
                 .orElseThrow(() -> new AppException("User Role not set."));
 
         user.setRoles(Collections.singleton(userRole));

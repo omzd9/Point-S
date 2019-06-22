@@ -1,13 +1,16 @@
 package com.points.connect.controller;
 
 import com.points.connect.exception.ResourceNotFoundException;
-import com.points.connect.model.User;
+import com.points.connect.model.*;
 import com.points.connect.payload.*;
-import com.points.connect.repository.UserRepository;
+import com.points.connect.repository.*;
 import com.points.connect.security.UserPrincipal;
 import com.points.connect.security.CurrentUser;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import java.util.List;
+
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +21,10 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
-
-    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+    
+    @Autowired
+    private RoleRepository roleRepository;
+    //private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @GetMapping("/user/me")
     @PreAuthorize("hasRole('USER')")
@@ -48,6 +53,11 @@ public class UserController {
         UserProfile userProfile = new UserProfile(user.getId(), user.getUsername(), user.getName());
         
         return userProfile;
+    }
+    
+    @GetMapping("/roles")
+    public List<Role> getRoles() {
+    	return roleRepository.findAll();
     }
 
 }

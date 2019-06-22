@@ -1,6 +1,7 @@
 package com.points.connect.payload;
 
 import javax.validation.constraints.*;
+import com.points.connect.model.*;
 
 public class SignUpRequest {
     @NotBlank
@@ -19,6 +20,13 @@ public class SignUpRequest {
     @NotBlank
     @Size(min = 6, max = 20)
     private String password;
+    
+    @NotBlank
+    private RoleName roleName;
+    
+    public RoleName getRoleName() {
+    	return roleName;
+    }
 
     public String getName() {
         return name;
