@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { signup, checkUsernameAvailability, checkEmailAvailability } from '../util/APIUtils';
+import { createAccount, checkUsernameAvailability, checkEmailAvailability } from '../util/APIUtils';
 import '../assets/css/Signup.css';
 import { Link } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ import {
     NAME_MIN_LENGTH, NAME_MAX_LENGTH, 
     USERNAME_MIN_LENGTH, USERNAME_MAX_LENGTH,
     EMAIL_MAX_LENGTH,
-    PASSWORD_MIN_LENGTH, PASSWORD_MAX_LENGTH
+    PASSWORD_MIN_LENGTH, PASSWORD_MAX_LENGTH,API_BASE_URL
 } from '../constants';
 
 import { Form, Input, Button, notification,Select } from 'antd';
@@ -59,7 +59,7 @@ class addAccount extends Component {
         this.handleRole=this.handleRole.bind(this);
         this.renderElementSupplementaire=this.renderElementSupplementaire.bind(this);
     }
-    /*componentDidMount() {
+    componentDidMount() {
         fetch(API_BASE_URL + "/roles")
           .then(res => res.json())
           .then(
@@ -75,10 +75,10 @@ class addAccount extends Component {
               });
             }
           )
-      }*/
+      }
  renderElementSupplementaire(role)
     {
-        if(role==='Franch')
+        if(role==='ROLE_FRANCHISE')
         {
             return(
             <div>
@@ -111,7 +111,7 @@ class addAccount extends Component {
             )
 
         }
-        if(role ==='GCompte')
+        if(role ==='ROLE_Gr_Compte')
         {
             return(
                 <div>
@@ -216,24 +216,24 @@ class addAccount extends Component {
             password: this.state.password.value,
             role : this.state.role.value,
         };
-        /*signup(signupRequest)
+        createAccount(createAccountRequest)
         .then(response => {
             notification.success({
                 message: 'Polling App',
                 description: "Thank you! Account has been created successfully !",
             });          
-            this.props.history.push("/login");
+            this.props.history.push("/addAccount");
         }).catch(error => {
             notification.error({
                 message: 'Polling App',
                 description: error.message || 'Sorry! Something went wrong. Please try again!'
             });
-        });*/
+        });
     }
 
     isFormInvalid() {
         
-        if(this.state.role.value==='PSD')
+        if(this.state.role.value==='ROLE_ADMIN' || this.state.role.value==='ROLE_CDG')
         {
         return !(this.state.name.validateStatus === true &&
             this.state.username.validateStatus === true &&
@@ -242,7 +242,7 @@ class addAccount extends Component {
             this.state.role.validateStatus === true 
         );
         }
-        if(this.state.role.value==='Franch')
+        if(this.state.role.value==='ROLE_FRANCHISE')
         {
             return !(this.state.name.validateStatus === true &&
             this.state.username.validateStatus === true &&
@@ -252,8 +252,8 @@ class addAccount extends Component {
             this.state.fonction.validateStatus === true &&
             this.state.ville.validateStatus === true
         );
-            }
-        if(this.state.role.value==='GCompte')
+        }
+        if(this.state.role.value==='ROLE_Gr_Compte')
         {
             return !(this.state.name.validateStatus === true &&
             this.state.username.validateStatus === true &&
@@ -264,6 +264,7 @@ class addAccount extends Component {
             this.state.societe.validateStatus === true
         );
         }
+        
         return true;
         
     }
@@ -353,9 +354,14 @@ class addAccount extends Component {
                             option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                 }
                             >
-                            <Option value="PSD">PSD</Option>
-                            <Option value="Franch">Franchisé</Option>
-                            <Option value="GCompte">Grande compte</Option>
+                            {   this.state.roles.map(function(role)
+                                        {
+                                            return (
+                                                <Option value={role.name}>{role.name}</Option>
+                                            )
+                                        })
+                            }
+                            
                         </Select>
                         </FormItem>
                         {this.renderElementSupplementaire(this.state.role.value)}

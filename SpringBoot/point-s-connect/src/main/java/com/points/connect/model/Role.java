@@ -2,10 +2,12 @@ package com.points.connect.model;
 
 import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "roles")
 public class Role {
+	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
