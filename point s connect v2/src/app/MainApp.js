@@ -11,12 +11,11 @@ import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
+import documentation from "../views/documentation";
+import addPromo from "../views/addPromo";
+import addEvent from "../views/addEvent"
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
+import Home from "../views/Home";
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -25,7 +24,7 @@ import { mainListItems, secondaryListItems } from '../listItems';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-
+import addAccount from "../views/addAccount";
 import Logo from '../assets/logo_points.png';
 import UserInfo from '../UserInfo';
 import Orders from '../AddOrder';
@@ -163,11 +162,20 @@ export default function ResponsiveDrawer(props) {
             <Switch> 
               <Route path="/orders/add" component={AddOrders}/>
               <Route path="/orders/" component={AddOrders}/>
+             
+              <Route path="/Home" component={Home}></Route>
+              <Route path="/addEvent" component={addEvent}></Route>
+              <Route path="/addPromo" component={addPromo}></Route>
+              <Route path="/documentation" component={documentation}></Route>
+              <Route path="/addAccount" component={addAccount}></Route>
+
+
             </Switch>
         </Container>
         <Footer />
       </main>
-    </div>
+      </div>
+         
   );
 }
 

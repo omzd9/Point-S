@@ -15,6 +15,7 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
+import backgroundImage from '../assets/background_login.jpg'
 import { makeStyles } from '@material-ui/core/styles';
 
 
@@ -23,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(../src/assets/background_login.jpg)',
+    backgroundImage: backgroundImage,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
@@ -141,7 +142,7 @@ class Login extends Component {
     };
     login(loginRequest)
     .then(response => {
-        localStorage.setItem(ACCESS_TOKEN, response.accessToken);
+        localStorage.setItem(ACCESS_TOKEN,response.accessToken);
         this.props.onLogin();
     }).catch(error => {
       
