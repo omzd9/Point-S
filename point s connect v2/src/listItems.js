@@ -11,6 +11,7 @@ import NoteAdd from '@material-ui/icons/NoteAdd';
 import Account from '@material-ui/icons/HowToReg';
 import History from '@material-ui/icons/History';
 
+import ParametreIcon from '@material-ui/icons/PermDataSetting';
 import Event from '@material-ui/icons/Event';
 import PeopleIcon from '@material-ui/icons/People';
 import Create from '@material-ui/icons/Create';
@@ -117,6 +118,46 @@ function AddContenu() {
   </List>
   );
 }
+function ParameterListeItems(){
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(true);
+  function handleClick() {
+    setOpen(!open);
+  }
+  return (
+    <List>      
+    <ListItem button onClick={handleClick}>
+      <ListItemIcon>
+        <ParametreIcon />
+      </ListItemIcon>
+      <ListItemText primary="Parametre"/>
+      {open ? <ExpandMore /> : <ExpandLess />}
+    </ListItem>
+    <Collapse in={!open} timeout="auto" unmountOnExit>
+      <List component="div" disablePadding>
+        <ListItemLink href="/addEvent" button className={classes.nested}>
+        <ListItemIcon>
+            <Event />
+        </ListItemIcon>
+          <ListItemText primary="Ajouter un event" />
+        </ListItemLink>
+        <ListItemLink href="/addPromo" button className={classes.nested}>
+        <ListItemIcon>
+            <Money />
+        </ListItemIcon>
+          <ListItemText primary="Ajouter une promo"/>
+        </ListItemLink>
+        <ListItemLink href="/addAccount" button className={classes.nested}>
+        <ListItemIcon>
+            <Account />
+        </ListItemIcon>
+          <ListItemText primary="Ajouter un compte" />
+        </ListItemLink>
+      </List>
+    </Collapse>
+  </List>
+  );
+}
 
 function DocumentationListItems() {
 
@@ -131,6 +172,7 @@ function DocumentationListItems() {
     </List>
   );
 }
+
 function HomeListItems() {
 
   return (
@@ -156,7 +198,7 @@ export const mainListItems = (
     </ListItem>
     <HomeListItems></HomeListItems>
     <AddContenu/>
-
+    <ParameterListeItems/>
     <OrdersListItems/>
     <DocumentationListItems></DocumentationListItems>
     
