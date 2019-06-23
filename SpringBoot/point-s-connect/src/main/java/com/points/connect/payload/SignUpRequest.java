@@ -24,6 +24,7 @@ public class SignUpRequest {
     @NotNull
     private RoleName roleName;
     
+
     public RoleName getRoleName() {
     	return roleName;
     }

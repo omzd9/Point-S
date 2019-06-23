@@ -11,6 +11,7 @@ import { getCurrentUser } from '../util/APIUtils';
 import { ACCESS_TOKEN } from '../constants';
 
 import Login from '../views/Login.js';
+
 import LoadingIndicator from '../components/LoadingIndicator';
 import PrivateRoute from '../components/PrivateRoute';
 import MainApp from './MainApp';
@@ -50,7 +51,7 @@ class App extends Component {
     this.loadCurrentUser();
   }
 
-  handleLogout(redirectTo="/", notificationType="success", description="You're successfully logged out.") {
+  handleLogout(redirectTo="/login", notificationType="success", description="You're successfully logged out.") {
     localStorage.removeItem(ACCESS_TOKEN);
 
     this.setState({

@@ -24,21 +24,26 @@ import java.nio.file.StandardCopyOption;
 })
 public class FileStorageService {
 
-    private final Path fileStorageLocation;
+    private final Path fileStorageLocationEvent;
+    private final Path fileStorageLocationPromo;
+
 
     @Autowired
     public FileStorageService(FileStorageProp fileStorageProperties) {
-        this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir())
+        this.fileStorageLocationEvent = Paths.get(fileStorageProperties.getUploadDirEvent())
+                .toAbsolutePath().normalize();
+        this.fileStorageLocationPromo = Paths.get(fileStorageProperties.getUploadDirPromo())
                 .toAbsolutePath().normalize();
 
         try {
-            Files.createDirectories(this.fileStorageLocation);
+            Files.createDirectories(this.fileStorageLocationEvent);
+            Files.createDirectories(this.fileStorageLocationPromo);
         } catch (Exception ex) {
             throw new FileStorageException("Could not create the directory where the uploaded files will be stored.", ex);
         }
     }
 
-    public String storeFile(MultipartFile file) {
+    public String storeFile(MultipartFile file,boolean isEvent) {
         // Normalize file name
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
@@ -49,7 +54,7 @@ public class FileStorageService {
             }
 
             // Copy file to the target location (Replacing existing file with the same name)
-            Path targetLocation = this.fileStorageLocation.resolve(fileName);
+            Path targetLocation = isEvent ? this.fileStorageLocationEvent.resolve(fileName):this.fileStorageLocationPromo.resolve(fileName);
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
             return fileName;
@@ -58,7 +63,7 @@ public class FileStorageService {
         }
     }
 
-    public Resource loadFileAsResource(String fileName) {
+   /* public Resource loadFileAsResource(String fileName) {
         try {
             Path filePath = this.fileStorageLocation.resolve(fileName).normalize();
             Resource resource = new UrlResource(filePath.toUri());
@@ -70,5 +75,5 @@ public class FileStorageService {
         } catch (MalformedURLException ex) {
             throw new FileNotFoundException("File not found " + fileName, ex);
         }
-    }
+    }*/
 }

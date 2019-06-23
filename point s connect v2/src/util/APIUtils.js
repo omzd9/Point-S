@@ -1,5 +1,5 @@
 import { API_BASE_URL, ACCESS_TOKEN } from '../constants';
-
+import axios, { post } from 'axios';
 const request = (options) => {
     const headers = new Headers({
         'Content-Type': 'application/json',
@@ -22,7 +22,53 @@ const request = (options) => {
                     })
                 );
 };
+export function createEvent(myEvent) {
+    const url = API_BASE_URL + "/Accueil/addEvent";
+    const formData = new FormData();
+    formData.append('file',myEvent.file);
+    formData.append('title',myEvent.title);
+    formData.append('description',myEvent.description);
+    formData.append('date',myEvent.date);
 
+    formData.append('content',myEvent.content);
+    const config = {
+        headers: {
+            'content-type': 'multipart/form-data'
+        }
+    }
+    return  post(url, formData,config)
+    .then(function (response) {
+        console.log(response);
+        return response;
+
+      })
+    .catch(function (error) {
+        return Promise.reject(error) ;
+        //error;
+      }); 
+}
+export function createPromo(myEvent) {
+    const url = API_BASE_URL + "/Accueil/addPromo";
+    const formData = new FormData();
+    formData.append('file',myEvent.file);
+    formData.append('date',myEvent.date);
+
+    const config = {
+        headers: {
+            'content-type': 'multipart/form-data'
+        }
+    }
+    return  post(url, formData,config)
+    .then(function (response) {
+        console.log(response);
+        return response;
+
+      })
+    .catch(function (error) {
+        return Promise.reject(error) ;
+        //error;
+      }); 
+}
 export function login(loginRequest) {
     return request({
         url: API_BASE_URL + "/auth/signin",
@@ -31,7 +77,7 @@ export function login(loginRequest) {
     });
 }
 
-export function signup(signupRequest) {
+export function createAccount(signupRequest) {
     return request({
         url: API_BASE_URL + "/auth/signup",
         method: 'POST',
