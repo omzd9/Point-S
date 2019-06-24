@@ -12,7 +12,9 @@ import java.util.List;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -25,7 +27,22 @@ public class UserController {
     @Autowired
     private RoleRepository roleRepository;
     //private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-
+    
+    @GetMapping("/users")
+    public List<User> getUser(){
+    	return userRepository.findAll();
+    }
+    
+    @DeleteMapping("/user/{username}/delete")
+    @Transactional
+    public ResponseEntity<?> delete(@PathVariable String username) {
+        if (!userRepository.findByUsername(username).isPresent()) {
+            ResponseEntity.badRequest().build();
+        }
+        userRepository.deleteByUsername(username);
+        return ResponseEntity.ok().build();
+    }
+    
     @GetMapping("/user/me")
     @PreAuthorize("hasRole('USER')")
     public UserSummary getCurrentUser(@CurrentUser UserPrincipal currentUser) {
@@ -59,5 +76,6 @@ public class UserController {
     public List<Role> getRoles() {
     	return roleRepository.findAll();
     }
+  
 
 }

@@ -1,38 +1,34 @@
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\security\CurrentUser.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\security\JwtAuthenticationEntryPoint.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\service\FileStorageService.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\exception\AppException.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\controller\AuthController.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\model\User.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\security\JwtTokenProvider.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\FileStorageProperties.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\payload\LoginRequest.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\security\JwtAuthenticationFilter.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\controller\UserController.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\payload\UserSummary.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\security\UserPrincipal.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\model\RoleName.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\payload\ApiResponse.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\payload\SignUpRequest.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\model\Actualite.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\util\ModelMapper.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\model\Role.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\exception\BadRequestException.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\payload\UserIdentityAvailability.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\repository\ActualiteRepository.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\payload\UploadFileResponse.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\util\AppConstants.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\repository\UserRepository.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\config\FileStorageProp.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\PSConnectApplication.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\config\SecurityConfig.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\payload\JwtAuthenticationResponse.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\exception\ResourceNotFoundException.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\exception\FileNotFoundException.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\exception\FileStorageException.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\payload\PagedResponse.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\payload\UserProfile.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\repository\RoleRepository.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\config\WebMvcConfig.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\controller\Accueil.java
-C:\Users\ZDLaP\Desktop\ReactProject\connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\security\CustomUserDetailsService.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\payload\UserIdentityAvailability.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\model\User.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\security\CurrentUser.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\controller\AuthController.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\security\UserPrincipal.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\config\SecurityConfig.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\payload\UserProfile.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\payload\JwtAuthenticationResponse.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\payload\PagedResponse.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\util\AppConstants.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\service\TicketService.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\exception\BadRequestException.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\payload\UserSummary.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\payload\SignUpRequest.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\model\RoleName.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\repository\TicketRepository.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\config\WebMvcConfig.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\payload\LoginRequest.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\exception\AppException.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\security\JwtAuthenticationFilter.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\controller\UserController.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\model\Ticket.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\repository\UserRepository.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\security\JwtAuthenticationEntryPoint.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\payload\TicketRequest.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\controller\TicketController.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\exception\ResourceNotFoundException.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\security\CustomUserDetailsService.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\payload\ApiResponse.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\PSConnectApplication.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\util\ModelMapper.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\security\JwtTokenProvider.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\model\Role.java
+D:\Development\Point S Connect\SpringBoot\point-s-connect\src\main\java\com\points\connect\repository\RoleRepository.java

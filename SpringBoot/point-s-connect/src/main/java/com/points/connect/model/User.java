@@ -28,6 +28,7 @@ public class User{
 
     @NotBlank
     @Size(max = 15)
+    @NaturalId
     private String username;
 
     @NaturalId
