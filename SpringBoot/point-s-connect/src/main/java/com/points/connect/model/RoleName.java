@@ -1,9 +1,9 @@
 package com.points.connect.model;
 
 public enum  RoleName {
-    ROLE_Gr_Compte,
+  
     ROLE_ADMIN,
     ROLE_CDG,
-    ROLE_FRANCHISE
-	
+    ROLE_FRANCHISE,
+    ROLE_Gr_Compte
 }

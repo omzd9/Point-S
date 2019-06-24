@@ -10,6 +10,9 @@ import Description from '@material-ui/icons/Description';
 import NoteAdd from '@material-ui/icons/NoteAdd';
 import Account from '@material-ui/icons/HowToReg';
 import History from '@material-ui/icons/History';
+import PromosIcon from '@material-ui/icons/CardGiftcard';
+import ClearAll from '@material-ui/icons/ClearAll';
+
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import ParametreIcon from '@material-ui/icons/PermDataSetting';
 import Event from '@material-ui/icons/Event';
@@ -141,17 +144,17 @@ function ParameterDataListeItems(){
         </ListItemIcon>
           <ListItemText primary="Users" />
         </ListItemLink>
-        <ListItemLink href="/addPromo" button className={classes.nested}>
+        <ListItemLink href="/promoTable" button className={classes.nested}>
         <ListItemIcon>
-            <Money />
+            <PromosIcon/>
         </ListItemIcon>
-          <ListItemText primary="Ajouter une promo"/>
+          <ListItemText primary="Ventes Flash"/>
         </ListItemLink>
-        <ListItemLink href="/addAccount" button className={classes.nested}>
+        <ListItemLink href="/actualiteTable" button className={classes.nested}>
         <ListItemIcon>
-            <Account />
+            <ClearAll />
         </ListItemIcon>
-          <ListItemText primary="Ajouter un compte" />
+          <ListItemText primary="Actualites" />
         </ListItemLink>
       </List>
     </Collapse>

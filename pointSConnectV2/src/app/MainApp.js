@@ -26,9 +26,10 @@ import Container from '@material-ui/core/Container';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import addAccount from "../views/addAccount";
 import Users from "../views/Users";
+import Promotions from "../views/promotion";
 import Logo from '../assets/logo_points.png';
 import UserInfo from '../UserInfo';
-import Orders from '../AddOrder';
+import Actualites from '../views/Actualite';
 import AddOrders from '../AddOrder';
 
 function Footer() {
@@ -170,6 +171,9 @@ export default function ResponsiveDrawer(props) {
               <Route path="/documentation" component={documentation}></Route>
               <Route path="/addAccount" component={addAccount}></Route>
               <Route path="/usersTable" component={Users}></Route>
+              <Route path="/promoTable" component={Promotions}></Route>
+              <Route path="/actualiteTable" component={Actualites}></Route>
+
 
 
             </Switch>

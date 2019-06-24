@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { createAccount, checkUsernameAvailability, checkEmailAvailability } from '../util/APIUtils';
 import '../assets/css/Signup.css';
-import { Link } from 'react-router-dom';
 
 import { 
     NAME_MIN_LENGTH, NAME_MAX_LENGTH, 
@@ -214,8 +213,9 @@ class addAccount extends Component {
             email: this.state.email.value,
             username: this.state.username.value,
             password: this.state.password.value,
-            role : this.state.role.value,
+            roleName : this.state.role.value,
         };
+        console.log(createAccountRequest);
         createAccount(createAccountRequest)
         .then(response => {
             notification.success({
