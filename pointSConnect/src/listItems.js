@@ -1,26 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import DashboardIcon from '@material-ui/icons/Dashboard';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Home from '@material-ui/icons/Home';
+import Calendar from '@material-ui/icons/Today';
 import Description from '@material-ui/icons/Description';
 import NoteAdd from '@material-ui/icons/NoteAdd';
 import Account from '@material-ui/icons/HowToReg';
 import History from '@material-ui/icons/History';
-import PromosIcon from '@material-ui/icons/CardGiftcard';
-import ClearAll from '@material-ui/icons/ClearAll';
-
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import ParametreIcon from '@material-ui/icons/PermDataSetting';
 import Event from '@material-ui/icons/Event';
-import PeopleIcon from '@material-ui/icons/People';
 import Create from '@material-ui/icons/Create';
 import Money from '@material-ui/icons/MonetizationOn';
-import LayersIcon from '@material-ui/icons/Layers';
-import AssignmentIcon from '@material-ui/icons/Assignment';
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import Collapse from "@material-ui/core/Collapse";
@@ -30,7 +25,7 @@ import ExpandMore from "@material-ui/icons/ExpandMore";
 
 
 function ListItemLink(props) {
-  return <ListItem button component="a" {...props} />;
+  return <ListItem button component={Link} {...props} />;
 }
 
 const useStyles = makeStyles(theme => ({
@@ -64,13 +59,13 @@ function OrdersListItems() {
       </ListItem>
       <Collapse in={!open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItemLink href="/orders" button className={classes.nested}>
+          <ListItemLink to="/orders" button className={classes.nested}>
           <ListItemIcon>
               <Create />
           </ListItemIcon>
             <ListItemText primary="Passer une commande" />
           </ListItemLink>
-          <ListItemLink href="/orders" button className={classes.nested}>
+          <ListItemLink to="/orders" button className={classes.nested}>
           <ListItemIcon>
               <History />
           </ListItemIcon>
@@ -98,19 +93,19 @@ function AddContenu() {
     </ListItem>
     <Collapse in={!open} timeout="auto" unmountOnExit>
       <List component="div" disablePadding>
-        <ListItemLink href="/addEvent" button className={classes.nested}>
+        <ListItemLink to="/addEvent" button className={classes.nested}>
         <ListItemIcon>
             <Event />
         </ListItemIcon>
           <ListItemText primary="Ajouter un event" />
         </ListItemLink>
-        <ListItemLink href="/addPromo" button className={classes.nested}>
+        <ListItemLink to="/addPromo" button className={classes.nested}>
         <ListItemIcon>
             <Money />
         </ListItemIcon>
           <ListItemText primary="Ajouter une promo"/>
         </ListItemLink>
-        <ListItemLink href="/addAccount" button className={classes.nested}>
+        <ListItemLink to="/addAccount" button className={classes.nested}>
         <ListItemIcon>
             <Account />
         </ListItemIcon>
@@ -138,23 +133,23 @@ function ParameterDataListeItems(){
     </ListItem>
     <Collapse in={!open} timeout="auto" unmountOnExit>
       <List component="div" disablePadding>
-        <ListItemLink href="/usersTable" button className={classes.nested}>
+        <ListItemLink to="/usersTable" button className={classes.nested}>
         <ListItemIcon>
             <AccountBoxIcon/>
         </ListItemIcon>
           <ListItemText primary="Users" />
         </ListItemLink>
-        <ListItemLink href="/promoTable" button className={classes.nested}>
+        <ListItemLink to="/addPromo" button className={classes.nested}>
         <ListItemIcon>
-            <PromosIcon/>
+            <Money />
         </ListItemIcon>
-          <ListItemText primary="Ventes Flash"/>
+          <ListItemText primary="Ajouter une promo"/>
         </ListItemLink>
-        <ListItemLink href="/actualiteTable" button className={classes.nested}>
+        <ListItemLink to="/addAccount" button className={classes.nested}>
         <ListItemIcon>
-            <ClearAll />
+            <Account />
         </ListItemIcon>
-          <ListItemText primary="Actualites" />
+          <ListItemText primary="Ajouter un compte" />
         </ListItemLink>
       </List>
     </Collapse>
@@ -166,7 +161,7 @@ function DocumentationListItems() {
 
   return (
     <List>      
-      <ListItemLink href="/documentation" button >
+      <ListItemLink to="/documentation" button >
         <ListItemIcon>
         <Description />
         </ListItemIcon>
@@ -180,7 +175,7 @@ function HomeListItems() {
 
   return (
     <List>      
-      <ListItemLink href="/Home" button >
+      <ListItemLink to="/home" button >
         <ListItemIcon>
         <Home />
         </ListItemIcon>
@@ -189,58 +184,49 @@ function HomeListItems() {
     </List>
   );
 }
+
+function CalendarListItems() {
+
+  return (
+    <List>      
+      <ListItemLink to="/calendar" button >
+        <ListItemIcon>
+        <Calendar />
+        </ListItemIcon>
+        <ListItemText primary="Calendar"/>
+      </ListItemLink>
+    </List>
+  );
+}
   
-export const mainListItems = (
-  
+export const adminListItems = (
   <div>
-    <ListItem button>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Dashboard" />
-    </ListItem>
-    <HomeListItems></HomeListItems>
+
+    <HomeListItems/>
     <AddContenu/>
     <ParameterDataListeItems/>
-    <OrdersListItems/>
-    <DocumentationListItems></DocumentationListItems>
+    <DocumentationListItems/>
     
-    <ListItem button>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Customers" />
-    </ListItem>
-  
-    <ListItem button>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Integrations" />
-    </ListItem>
   </div>
 );
 
-export const secondaryListItems = (
+export const grCompteListItems = (
   <div>
-    <ListSubheader inset>Saved reports</ListSubheader>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Current month" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Last quarter" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Year-end sale" />
-    </ListItem>
+    
+  </div>
+);
+
+export const cdgListItems = (
+  <div>
+    
+  </div>
+);
+
+export const franchiseListItems = (
+  <div>
+    <HomeListItems/>
+    <CalendarListItems/>
+    <OrdersListItems/>
+    <DocumentationListItems/>
   </div>
 );

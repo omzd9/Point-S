@@ -20,17 +20,18 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { mainListItems, secondaryListItems } from '../listItems';
+import { adminListItems, franchiseListItems, cdgListItems, grCompteListItems } from '../listItems';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import addAccount from "../views/addAccount";
 import Users from "../views/Users";
-import Promotions from "../views/promotion";
 import Logo from '../assets/logo_points.png';
 import UserInfo from '../UserInfo';
-import Actualites from '../views/Actualite';
+import Profile from '../views/Profile';
+import Orders from '../AddOrder';
 import AddOrders from '../AddOrder';
+import Calendar from '../calendar';
 
 function Footer() {
   return (
@@ -41,7 +42,6 @@ function Footer() {
 }
 
 const drawerWidth = 240;
-
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -77,7 +77,22 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ResponsiveDrawer(props) {
+function MainListItems(props){
+  switch(props.currentUser.role){
+    case "ROLE_GR_COMPTE":
+      return (grCompteListItems);
+    case "ROLE_ADMIN":
+      return (adminListItems);
+    case "ROLE_CDG":
+      return (cdgListItems);
+    case "ROLE_FRANCHISE":
+      return (franchiseListItems);
+    default :
+      return (grCompteListItems);
+  }
+}
+
+export default function MainApp(props) {
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -90,14 +105,12 @@ export default function ResponsiveDrawer(props) {
   const drawer = (
     <div>
       <div className={classes.toolbarIcon}>
-          <UserInfo/>
-  
+          <UserInfo currentUser={props.currentUser} handleLogout={props.handleLogout} />
         </div>
-        
         <Divider />
-        <List>{mainListItems}</List>
-        <Divider />
-        <List>{secondaryListItems}</List>
+        <List> 
+          <MainListItems currentUser={props.currentUser}/>
+        </List>
     </div>
   );
 
@@ -164,18 +177,16 @@ export default function ResponsiveDrawer(props) {
             <Switch> 
               <Route path="/orders/add" component={AddOrders}/>
               <Route path="/orders/" component={AddOrders}/>
-             
-              <Route path="/Home" component={Home}></Route>
+              <Route path="/home" component={Home}></Route>
+              <Route path="/calendar" component={Calendar}></Route>
               <Route path="/addEvent" component={addEvent}></Route>
               <Route path="/addPromo" component={addPromo}></Route>
               <Route path="/documentation" component={documentation}></Route>
               <Route path="/addAccount" component={addAccount}></Route>
               <Route path="/usersTable" component={Users}></Route>
-              <Route path="/promoTable" component={Promotions}></Route>
-              <Route path="/actualiteTable" component={Actualites}></Route>
-
-
-
+              <Route path="/users/:username" 
+                  render={(props) => <Profile currentUser={props.currentUser} {...props}  />}>
+                </Route>
             </Switch>
         </Container>
         <Footer />
@@ -184,9 +195,3 @@ export default function ResponsiveDrawer(props) {
          
   );
 }
-
-ResponsiveDrawer.propTypes = {
-  // Injected by the documentation to work in an iframe.
-  // You won't need it on your project.
-  container: PropTypes.object,
-};

@@ -4,40 +4,35 @@ import axios from 'axios';
 import "../assets/css/tables.css"
 import { API_BASE_URL} from '../constants';
 
-class Promotions extends Component {
+class Users extends Component {
 
   constructor(props) {
     super(props);
     this.columns = [
       {
-        title: 'Title',
-        dataIndex: 'title',
+        title: 'Name',
+        dataIndex: 'name',
         width: '30%',
         
       },
       {
-        title: 'Date cloture',
-        dataIndex: 'cloture',
+        title: 'Email',
+        dataIndex: 'email',
       },
       {
-        title: 'Date d\'enregistrement',
-        dataIndex: 'enregistrement',
+        title: 'Username',
+        dataIndex: 'username',
       },
       {
-        title: 'File',
-        dataIndex: 'fileName',
+        title: 'Role',
+        dataIndex: "roles[0].name", 
       },
-      {
-        title: 'Contenu',
-        dataIndex: 'content',
-      },
-     
       {
         title: 'operation',
         dataIndex: 'operation',
         render: (text, record) =>
           this.state.dataSource.length >= 1 ? (
-            <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(record.id)}>
+            <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(record.username,record.id)}>
               <a href="javascript:;">Delete</a>
             </Popconfirm>
           ) : null,
@@ -50,7 +45,7 @@ class Promotions extends Component {
  
       }
   componentDidMount(){
-      fetch(API_BASE_URL + "/Accueil/events")
+      fetch(API_BASE_URL + "/users")
           .then(res => res.json())
           .then(
             (result) => {
@@ -67,9 +62,9 @@ class Promotions extends Component {
           );      
   }
 
-handleDelete (id ) {
+handleDelete (username,id ) {
  
-    axios.delete(API_BASE_URL + "/Accueil/actualite/"+ id +"/delete");
+    axios.delete(API_BASE_URL + "/user/"+ username +"/delete");
     const dataSource = [...this.state.dataSource];
     this.setState({ dataSource: dataSource.filter(item => item.id !== id) }); 
   }
@@ -83,7 +78,7 @@ handleDelete (id ) {
     const {dataSource} = this.state; 
     return (
       <div>
-      <h1 className="page-title title">La liste des actualités </h1>
+      <h1 className="page-title">La liste des utilisateurs </h1>
         <Table
          
           rowClassName={() => 'editable-row'}
@@ -91,7 +86,6 @@ handleDelete (id ) {
           dataSource={dataSource}
           columns={columns}
           rowKey={record => record.id}
-          pagination={{ pageSize: 3 }}
         />
       </div>
     );
@@ -99,4 +93,4 @@ handleDelete (id ) {
 }
 
 
-export default Promotions;
+export default Users;

@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import {
   Route,
-  BrowserRouter as Router,
   withRouter,
+  BrowserRouter as Router,
   Switch
 } from 'react-router-dom';
-
 
 import { getCurrentUser } from '../util/APIUtils';
 import { ACCESS_TOKEN } from '../constants';
 
-import Login from '../views/Login.js';
+import Login from '../views/Login';
 
 import LoadingIndicator from '../components/LoadingIndicator';
 import PrivateRoute from '../components/PrivateRoute';
 import MainApp from './MainApp';
+
+
+import { notification } from 'antd';
 
 class App extends Component {
   constructor(props) {
@@ -26,7 +28,13 @@ class App extends Component {
     }
     this.handleLogout = this.handleLogout.bind(this);
     this.loadCurrentUser = this.loadCurrentUser.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);   
+    this.handleLogin = this.handleLogin.bind(this);
+
+    notification.config({
+      placement: 'topRight',
+      top: 70,
+      duration: 3,
+    });    
   }
 
   loadCurrentUser() {
@@ -51,7 +59,7 @@ class App extends Component {
     this.loadCurrentUser();
   }
 
-  handleLogout(redirectTo="/login", notificationType="success", description="You're successfully logged out.") {
+  handleLogout(redirectTo="/", notificationType="success", description="You're successfully logged out.") {
     localStorage.removeItem(ACCESS_TOKEN);
 
     this.setState({
@@ -60,24 +68,32 @@ class App extends Component {
     });
 
     this.props.history.push(redirectTo);
-  
+    
+    notification[notificationType]({
+      message: 'Polling App',
+      description: description,
+    });
   }
 
   handleLogin() {
+    notification.success({
+      message: 'Polling App',
+      description: "You're successfully logged in.",
+    });
     this.loadCurrentUser();
     this.props.history.push("/");
   }
 
   render() {
-    if(this.state.isLoading) {
+    if(this.state.isLoading ) {
       return <LoadingIndicator />
     }
     return (
       <div className="app-container">
         <Switch> 
-            <Route path="/login" 
+            <Route exact path="/login" 
               render={(props) => <Login authenticated={this.state.isAuthenticated} onLogin={this.handleLogin} {...props} />}></Route>
-            <PrivateRoute authenticated={this.state.isAuthenticated} path="/" component={MainApp} handleLogout={this.handleLogout}></PrivateRoute>
+            <PrivateRoute authenticated={this.state.isAuthenticated} path="/" component={MainApp} currentUser={this.state.currentUser} handleLogout={this.handleLogout}></PrivateRoute>
         </Switch>
       </div>
     );
