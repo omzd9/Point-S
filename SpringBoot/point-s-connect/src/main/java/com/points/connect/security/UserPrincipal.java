@@ -1,6 +1,6 @@
 package com.points.connect.security;
 
-import com.points.connect.model.User;
+import com.points.connect.model.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,6 +22,8 @@ public class UserPrincipal implements UserDetails {
     private String name;
 
     private String username;
+    
+    private RoleName role;
 
     @JsonIgnore
     private String email;
@@ -31,10 +33,11 @@ public class UserPrincipal implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserPrincipal(Long id, String name, String username, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+    public UserPrincipal(Long id, String name, String username, RoleName role, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.name = name;
         this.username = username;
+        this.role = role;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
@@ -44,11 +47,14 @@ public class UserPrincipal implements UserDetails {
         List<GrantedAuthority> authorities = user.getRoles().stream().map(role ->
                 new SimpleGrantedAuthority(role.getName().name())
         ).collect(Collectors.toList());
+        
+        RoleName role = user.getRoles().iterator().next().getName();
 
         return new UserPrincipal(
                 user.getId(),
                 user.getName(),
                 user.getUsername(),
+                role,
                 user.getEmail(),
                 user.getPassword(),
                 authorities
@@ -75,6 +81,10 @@ public class UserPrincipal implements UserDetails {
     @Override
     public String getPassword() {
         return password;
+    }
+    
+    public RoleName getRole() {
+        return role;
     }
 
     @Override
