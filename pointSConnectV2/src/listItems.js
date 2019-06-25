@@ -140,7 +140,7 @@ function ParameterDataListeItems(){
       <List component="div" disablePadding>
         <ListItemLink href="/usersTable" button className={classes.nested}>
         <ListItemIcon>
-            <AccountBoxIcon/>
+        <PeopleIcon />
         </ListItemIcon>
           <ListItemText primary="Users" />
         </ListItemLink>
@@ -193,31 +193,14 @@ function HomeListItems() {
 export const mainListItems = (
   
   <div>
-    <ListItem button>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Dashboard" />
-    </ListItem>
+    
     <HomeListItems></HomeListItems>
     <AddContenu/>
     <ParameterDataListeItems/>
     <OrdersListItems/>
     <DocumentationListItems></DocumentationListItems>
     
-    <ListItem button>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Customers" />
-    </ListItem>
   
-    <ListItem button>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Integrations" />
-    </ListItem>
   </div>
 );
 
