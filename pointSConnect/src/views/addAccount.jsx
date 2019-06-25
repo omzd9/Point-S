@@ -110,7 +110,7 @@ class addAccount extends Component {
             )
 
         }
-        if(role ==='ROLE_Gr_Compte')
+        if(role ==='ROLE_GR_COMPTE')
         {
             return(
                 <div>
@@ -253,7 +253,7 @@ class addAccount extends Component {
             this.state.ville.validateStatus === true
         );
         }
-        if(this.state.role.value==='ROLE_Gr_Compte')
+        if(this.state.role.value==='ROLE_GR_COMPTE')
         {
             return !(this.state.name.validateStatus === true &&
             this.state.username.validateStatus === true &&

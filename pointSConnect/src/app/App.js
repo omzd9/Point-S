@@ -8,13 +8,13 @@ import {
 
 import { getCurrentUser } from '../util/APIUtils';
 import { ACCESS_TOKEN } from '../constants';
-
+import backgrounfImage from "../assets/background_login.jpg"
 import Login from '../views/Login';
 
 import LoadingIndicator from '../components/LoadingIndicator';
 import PrivateRoute from '../components/PrivateRoute';
 import MainApp from './MainApp';
-
+import "../assets/css/Login.css";
 
 import { notification } from 'antd';
 
@@ -89,7 +89,7 @@ class App extends Component {
       return <LoadingIndicator />
     }
     return (
-      <div className="app-container">
+    <div className="login ">{/* style={ {backgroundImage: `url(${backgrounfImage})` }}>*/}
         <Switch> 
             <Route exact path="/login" 
               render={(props) => <Login authenticated={this.state.isAuthenticated} onLogin={this.handleLogin} {...props} />}></Route>

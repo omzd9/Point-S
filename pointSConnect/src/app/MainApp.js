@@ -29,7 +29,8 @@ import Users from "../views/Users";
 import Logo from '../assets/logo_points.png';
 import UserInfo from '../UserInfo';
 import Profile from '../views/Profile';
-import Orders from '../AddOrder';
+import Actualite from "../views/Actualite";
+import Promotions from "../views/Promotions";
 import AddOrders from '../AddOrder';
 import Calendar from '../calendar';
 
@@ -184,9 +185,14 @@ export default function MainApp(props) {
               <Route path="/documentation" component={documentation}></Route>
               <Route path="/addAccount" component={addAccount}></Route>
               <Route path="/usersTable" component={Users}></Route>
+              <Route path="/actualiteTable" component={Actualite}></Route>
+              <Route path="/promoTable" component={Promotions}></Route>
+
               <Route path="/users/:username" 
                   render={(props) => <Profile currentUser={props.currentUser} {...props}  />}>
-                </Route>
+              </Route>
+              <Route path="/" component={Home}/>
+             
             </Switch>
         </Container>
         <Footer />

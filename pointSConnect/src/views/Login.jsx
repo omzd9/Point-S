@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { login } from '../util/APIUtils';
 import { Redirect }from 'react-router-dom';
 import '../assets/css/Login.css';
-import { Link } from 'react-router-dom';
 import { ACCESS_TOKEN } from '../constants';
-
 import { Form, Input, Button, Icon, notification } from 'antd';
 const FormItem = Form.Item;
 
@@ -23,7 +21,7 @@ class Login extends Component {
     const AntWrappedLoginForm = Form.create()(LoginForm)
     return (
             <div className="login-container">
-                <h1 className="page-title">Login</h1>
+                <h1 className="page-title ">Login</h1>
                 <div className="login-content">
                     <AntWrappedLoginForm onLogin={this.props.onLogin} />
                 </div>
@@ -37,7 +35,7 @@ class LoginForm extends Component {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
+    
     handleSubmit(event) {
         event.preventDefault();   
         this.props.form.validateFields((err, values) => {
@@ -67,7 +65,10 @@ class LoginForm extends Component {
     render() {
         const { getFieldDecorator } = this.props.form;
         return (
-            <Form onSubmit={this.handleSubmit} className="login-form">
+           
+    
+ 
+            <Form onSubmit={this.handleSubmit} className="login-form ">
                 <FormItem>
                     {getFieldDecorator('usernameOrEmail', {
                         rules: [{ required: true, message: 'Please input your username or email!' }],
@@ -95,6 +96,7 @@ class LoginForm extends Component {
                     <Button type="primary" htmlType="submit" size="large" className="login-form-button">Login</Button>
                 </FormItem>
             </Form>
+    
         );
     }
 }
