@@ -10,8 +10,10 @@ import Calendar from '@material-ui/icons/Today';
 import Description from '@material-ui/icons/Description';
 import NoteAdd from '@material-ui/icons/NoteAdd';
 import Account from '@material-ui/icons/HowToReg';
+import VenteFlash from "@material-ui/icons/CardGiftcard";
+import TimeLine from "@material-ui/icons/Timeline";
 import History from '@material-ui/icons/History';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import SupervisorUser from '@material-ui/icons/SupervisorAccount';
 import ParametreIcon from '@material-ui/icons/PermDataSetting';
 import Event from '@material-ui/icons/Event';
 import Create from '@material-ui/icons/Create';
@@ -173,21 +175,21 @@ function ParameterDataListeItems(){
       <List component="div" disablePadding>
         <ListItemLink to="/usersTable" button className={classes.nested}>
         <ListItemIcon>
-            <AccountBoxIcon/>
+        <SupervisorUser/>
         </ListItemIcon>
           <ListItemText primary="Users" />
         </ListItemLink>
-        <ListItemLink to="/addPromo" button className={classes.nested}>
+        <ListItemLink to="/promoTable" button className={classes.nested}>
         <ListItemIcon>
-            <Money />
+            <VenteFlash />
         </ListItemIcon>
-          <ListItemText primary="Ajouter une promo"/>
+          <ListItemText primary="ventes Flash"/>
         </ListItemLink>
-        <ListItemLink to="/addAccount" button className={classes.nested}>
+        <ListItemLink to="/ActualiteTable" button className={classes.nested}>
         <ListItemIcon>
-            <Account />
+            <TimeLine />
         </ListItemIcon>
-          <ListItemText primary="Ajouter un compte" />
+          <ListItemText primary="Actualités" />
         </ListItemLink>
       </List>
     </Collapse>

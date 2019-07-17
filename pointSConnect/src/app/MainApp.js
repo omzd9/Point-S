@@ -11,7 +11,7 @@ import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
-import documentation from "../views/documentation";
+import Document from "../views/Document";
 import addPromo from "../views/addPromo";
 import addEvent from "../views/addEvent"
 import List from '@material-ui/core/List';
@@ -29,7 +29,8 @@ import Users from "../views/Users";
 import Logo from '../assets/logo_points.png';
 import UserInfo from '../UserInfo';
 import Profile from '../views/Profile';
-import Orders from '../AddOrder';
+import Actualite from "../views/Actualite";
+import Promotions from "../views/Promotions";
 import AddOrders from '../AddOrder';
 import Calendar from '../calendar';
 import AddRequete from '../Requete/addRequete';
@@ -191,9 +192,12 @@ export default function MainApp(props) {
               <Route path="/calendar" component={Calendar}></Route>
               <Route path="/addEvent" component={addEvent}></Route>
               <Route path="/addPromo" component={addPromo}></Route>
-              <Route path="/documentation" component={documentation}></Route>
+              <Route path="/documentation" component={Document}></Route>
               <Route path="/addAccount" component={addAccount}></Route>
               <Route path="/usersTable" component={Users}></Route>
+              <Route path="/actualiteTable" component={Actualite}></Route>
+              <Route path="/promoTable" component={Promotions}></Route>
+
               <Route path="/users/:username" 
                 render={(rest) => <Profile currentUser={props.currentUser} {...rest}  />}>
               </Route>

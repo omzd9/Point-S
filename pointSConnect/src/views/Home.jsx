@@ -50,7 +50,7 @@ class Home extends Component {
                       
                         <div className="jumbotron " style={this.divStyle}>
                             <h1 className="display-3">Actualité et évènement</h1>
-                            <p className="lead">This is a sntent or information.</p>
+                            <p className="lead"></p>
                             <hr/>
                           
                             <div className="row">

@@ -53,7 +53,7 @@ class Slid extends Component {
                  <div >
                      
                     <div style={this.s}> 
-                   <Carousel ref={node => (this.carousel = node)} {...props}>
+                   <Carousel autoplay  ref={node => (this.carousel = node)} {...props}>
                         {this.state.venteFlash.map(function(image)
                            {
                               return (
