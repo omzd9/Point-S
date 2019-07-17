@@ -11,6 +11,8 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -62,7 +64,23 @@ public class FileStorageService {
             throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
         }
     }
-
+    public Boolean deleteFile(String fileName,boolean isEvent) {
+    	File file ;
+    	if(isEvent) {
+    		file = new File( fileStorageLocationEvent+"/"+fileName);
+    	}else {
+    		file = new File( fileStorageLocationPromo+"/"+fileName);
+    	}
+    	
+        if(file.delete()){
+                
+                return true;
+            }else {
+            	System.out.println("File  doesn't exist :"+ file.getAbsolutePath());
+            	return false;
+            }
+    	}
+    	
    /* public Resource loadFileAsResource(String fileName) {
         try {
             Path filePath = this.fileStorageLocation.resolve(fileName).normalize();
@@ -76,4 +94,5 @@ public class FileStorageService {
             throw new FileNotFoundException("File not found " + fileName, ex);
         }
     }*/
+    
 }
