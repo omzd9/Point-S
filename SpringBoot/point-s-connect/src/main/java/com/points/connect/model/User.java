@@ -1,6 +1,9 @@
 package com.points.connect.model;
 
 import org.hibernate.annotations.NaturalId;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -39,8 +42,8 @@ public class User{
 
     @NotBlank
     @Size(max = 100)
+    @JsonIgnore
     private String password;
-    
     
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",

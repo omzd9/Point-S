@@ -32,6 +32,11 @@ import Profile from '../views/Profile';
 import Orders from '../AddOrder';
 import AddOrders from '../AddOrder';
 import Calendar from '../calendar';
+import AddRequete from '../Requete/addRequete';
+import ListRequete from '../Requete/listRequete';
+import Ticket from '../Requete/listTicket';
+
+
 
 function Footer() {
   return (
@@ -175,6 +180,11 @@ export default function MainApp(props) {
         <div className={classes.toolbar} />
         <Container maxWidth="lg" className={classes.container}>
             <Switch> 
+              <Route exact path="/requetes" component={ListRequete}/>
+              <Route path="/requetes/add" component={AddRequete}/>
+              <Route path="/requetes/:id" 
+                render={(rest) => <Ticket currentUser={props.currentUser} {...rest}  />}>
+              </Route>
               <Route path="/orders/add" component={AddOrders}/>
               <Route path="/orders/" component={AddOrders}/>
               <Route path="/home" component={Home}></Route>
@@ -185,8 +195,8 @@ export default function MainApp(props) {
               <Route path="/addAccount" component={addAccount}></Route>
               <Route path="/usersTable" component={Users}></Route>
               <Route path="/users/:username" 
-                  render={(props) => <Profile currentUser={props.currentUser} {...props}  />}>
-                </Route>
+                render={(rest) => <Profile currentUser={props.currentUser} {...rest}  />}>
+              </Route>
             </Switch>
         </Container>
         <Footer />

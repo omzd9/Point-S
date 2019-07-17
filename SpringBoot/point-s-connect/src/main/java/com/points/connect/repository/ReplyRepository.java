@@ -11,6 +11,6 @@ import java.util.Optional;
 
 @Repository
 public interface ReplyRepository extends JpaRepository<Reply, Long> {
-    Page<Reply> findByTicketId(Long ticketId, Pageable pageable);
-    Optional<Reply> findByIdAndTicketId(Long id, Long ticketId);
+    Optional<Reply> findByRequeteId(Long requeteId);
+    Optional<Reply> findByIdAndRequeteId(Long id, Long requeteId);
 }

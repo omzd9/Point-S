@@ -24,7 +24,7 @@ class App extends Component {
     this.state = {
       currentUser: null,
       isAuthenticated: false,
-      isLoading: false
+      isLoading: true
     }
     this.handleLogout = this.handleLogout.bind(this);
     this.loadCurrentUser = this.loadCurrentUser.bind(this);
@@ -93,7 +93,7 @@ class App extends Component {
         <Switch> 
             <Route exact path="/login" 
               render={(props) => <Login authenticated={this.state.isAuthenticated} onLogin={this.handleLogin} {...props} />}></Route>
-            <PrivateRoute authenticated={this.state.isAuthenticated} path="/" component={MainApp} currentUser={this.state.currentUser} handleLogout={this.handleLogout}></PrivateRoute>
+            <PrivateRoute loading={this.state.isLoading} authenticated={this.state.isAuthenticated} path="/" component={MainApp} currentUser={this.state.currentUser} handleLogout={this.handleLogout}></PrivateRoute>
         </Switch>
       </div>
     );

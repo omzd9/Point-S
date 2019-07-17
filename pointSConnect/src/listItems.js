@@ -39,6 +39,42 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+function RequeteListItems() {
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(true);
+
+  function handleClick() {
+    setOpen(!open);
+  }
+
+  return (
+    <List>      
+      <ListItem button onClick={handleClick}>
+        <ListItemIcon>
+        <ShoppingCartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Mes Requetes"/>
+        {open ? <ExpandMore /> : <ExpandLess />}
+      </ListItem>
+      <Collapse in={!open} timeout="auto" unmountOnExit>
+        <List component="div" disablePadding>
+          <ListItemLink to="/requetes/add" button className={classes.nested}>
+          <ListItemIcon>
+              <Create />
+          </ListItemIcon>
+            <ListItemText primary="Ajouter une requete" />
+          </ListItemLink>
+          <ListItemLink to="/requetes" button className={classes.nested}>
+          <ListItemIcon>
+              <History />
+          </ListItemIcon>
+            <ListItemText primary="Historique des requetes" />
+          </ListItemLink>
+        </List>
+      </Collapse>
+    </List>
+  );
+}
 
 function OrdersListItems() {
   const classes = useStyles();
@@ -76,6 +112,7 @@ function OrdersListItems() {
     </List>
   );
 }
+
 function AddContenu() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
@@ -116,6 +153,7 @@ function AddContenu() {
   </List>
   );
 }
+
 function ParameterDataListeItems(){
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
@@ -158,7 +196,6 @@ function ParameterDataListeItems(){
 }
 
 function DocumentationListItems() {
-
   return (
     <List>      
       <ListItemLink to="/documentation" button >
@@ -226,6 +263,7 @@ export const franchiseListItems = (
   <div>
     <HomeListItems/>
     <CalendarListItems/>
+    <RequeteListItems/>
     <OrdersListItems/>
     <DocumentationListItems/>
   </div>

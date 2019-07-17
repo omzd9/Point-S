@@ -1,5 +1,6 @@
 import { API_BASE_URL, ACCESS_TOKEN } from '../constants';
 import axios, { post } from 'axios';
+
 const request = (options) => {
     const headers = new Headers({
         'Content-Type': 'application/json',
@@ -22,6 +23,23 @@ const request = (options) => {
                     })
                 );
 };
+
+export function createRequete(requete){
+    return request({
+        url: API_BASE_URL + "/requetes",
+        method: 'POST',
+        body: JSON.stringify(requete)
+    });
+}
+
+export function createReply(requeteId, reply){
+    return request({
+        url: API_BASE_URL + "/requetes/" + requeteId,
+        method: 'POST',
+        body: JSON.stringify(reply)
+    });
+}
+
 export function createEvent(myEvent) {
     const url = API_BASE_URL + "/Accueil/addEvent";
     const formData = new FormData();
