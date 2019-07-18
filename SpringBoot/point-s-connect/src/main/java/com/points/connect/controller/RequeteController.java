@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.points.connect.exception.ResourceNotFoundException;
 import com.points.connect.model.Reply;
@@ -15,6 +16,8 @@ import com.points.connect.security.CurrentUser;
 import com.points.connect.security.UserPrincipal;
 import com.points.connect.repository.*;
 import com.points.connect.service.RequeteService;
+import com.points.connect.service.FileStorageService;
+
 
 import javax.validation.Valid;
 import java.util.List;
@@ -26,6 +29,9 @@ import java.util.Optional;
 //@Slf4j
 @RequiredArgsConstructor
 public class RequeteController {
+	@Autowired
+    private FileStorageService fileStorageService;
+	
     private final ReplyRepository replyRepository;
     private final RequeteService requeteService;
     private final UserRepository userRepository;
@@ -34,9 +40,16 @@ public class RequeteController {
     public ResponseEntity<List<Requete>> findAll() {
         return ResponseEntity.ok(requeteService.findAll());
     }
+     
 
     @PostMapping
-    public ResponseEntity<Requete> create(@CurrentUser UserPrincipal currentUser, @Valid @RequestBody Requete requete) {
+    public ResponseEntity<Requete> create(@CurrentUser UserPrincipal currentUser,@RequestParam("file") MultipartFile[] files,
+    		@Valid @RequestBody Requete requete) {
+    	
+		for(int i=0; i<files.length; i++)
+			fileStorageService.storeFileRequete(files[0],requete.getId()+"-"+i);
+    	
+    	
     	User author = userRepository.findById(currentUser.getId())
     			.orElseThrow(() -> new ResourceNotFoundException("User", "username", currentUser.getUsername()));
     	requete.setAuthor(author);

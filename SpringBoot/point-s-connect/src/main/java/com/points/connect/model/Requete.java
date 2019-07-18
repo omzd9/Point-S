@@ -41,8 +41,6 @@ public class Requete {
 	@NotNull
 	private Date delai;
 	
-    private String[] fileNames;
-
 	
 	@OneToMany(cascade = CascadeType.ALL,
            fetch = FetchType.LAZY,

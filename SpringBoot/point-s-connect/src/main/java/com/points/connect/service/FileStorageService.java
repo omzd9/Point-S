@@ -28,7 +28,8 @@ public class FileStorageService {
 
     private final Path fileStorageLocationEvent;
     private final Path fileStorageLocationPromo;
-
+    private final Path fileStorageLocationRequete;
+    
 
     @Autowired
     public FileStorageService(FileStorageProp fileStorageProperties) {
@@ -36,17 +37,29 @@ public class FileStorageService {
                 .toAbsolutePath().normalize();
         this.fileStorageLocationPromo = Paths.get(fileStorageProperties.getUploadDirPromo())
                 .toAbsolutePath().normalize();
+        this.fileStorageLocationRequete = Paths.get(fileStorageProperties.getUploadDirRequete())
+                .toAbsolutePath().normalize();
 
         try {
             Files.createDirectories(this.fileStorageLocationEvent);
             Files.createDirectories(this.fileStorageLocationPromo);
+            Files.createDirectories(this.fileStorageLocationRequete);
         } catch (Exception ex) {
             throw new FileStorageException("Could not create the directory where the uploaded files will be stored.", ex);
         }
     }
+    
+    public void storeFileRequete(MultipartFile file, String fileName) {
+		try {
+			Files.copy(file.getInputStream(), this.fileStorageLocationRequete.resolve(fileName), StandardCopyOption.REPLACE_EXISTING);
+		}
+		catch(IOException ex) {
+            throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
+        }
+    }
 
     public String storeFile(MultipartFile file,boolean isEvent) {
-        // Normalize file name
+        // Normalise file name
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
         try {
@@ -56,7 +69,7 @@ public class FileStorageService {
             }
 
             // Copy file to the target location (Replacing existing file with the same name)
-            Path targetLocation = isEvent ? this.fileStorageLocationEvent.resolve(fileName):this.fileStorageLocationPromo.resolve(fileName);
+            Path targetLocation = isEvent ? this.fileStorageLocationEvent.resolve(fileName) : this.fileStorageLocationPromo.resolve(fileName);
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
             return fileName;
@@ -73,9 +86,9 @@ public class FileStorageService {
     	}
     	
         if(file.delete()){
-                
                 return true;
-            }else {
+            }
+        else {
             	System.out.println("File  doesn't exist :"+ file.getAbsolutePath());
             	return false;
             }

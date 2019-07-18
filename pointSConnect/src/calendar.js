@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import  { Calendar as BigCalendar, momentLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment'
+import { API_BASE_URL} from './constants';
 import events from './events';
 
 const localizer = momentLocalizer(moment)
@@ -9,7 +10,67 @@ const now = new Date()
 
 
 class Calendar extends Component {
-    state = {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      events: []
+      };
+ 
+      }
+
+  componentDidMount(){
+      fetch(API_BASE_URL + "/Accueil/events")
+          .then(res => res.json())
+          .then(
+            (results) => {
+
+              results.map(
+                (result) => {
+                  this.setState({
+                    events: [
+                      {
+                        start: result.enregistrement,
+                        end: result.cloture,
+                        title: result.title
+                      },
+                      ...this.state.events
+                    ]
+                  });
+                },
+              );
+            },
+
+            (error) => {
+              this.setState({
+                error
+              });
+            }
+          );      
+  }  
+
+    render() {
+    return (
+        <div>
+            <BigCalendar
+            localizer={localizer}
+            events={this.state.events}
+            startAccessor="start"
+            endAccessor="end"
+            defaultDate={new Date()}
+            defaultView="month"
+            style={{ height: "80vh" }}
+            />
+        </div>
+    );
+    }
+}
+    
+export default Calendar;
+
+/*
+state = {
         events: [
           {
             start: new Date(),
@@ -128,22 +189,4 @@ class Calendar extends Component {
           }
         ]
       };
-
-    render() {
-    return (
-        <div>
-            <BigCalendar
-            localizer={localizer}
-            events={this.state.events}
-            startAccessor="start"
-            endAccessor="end"
-            defaultDate={new Date()}
-            defaultView="month"
-            style={{ height: "80vh" }}
-            />
-        </div>
-    );
-    }
-}
-    
-export default Calendar;
+*/

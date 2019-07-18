@@ -28,6 +28,9 @@ export function createRequete(requete){
     return request({
         url: API_BASE_URL + "/requetes",
         method: 'POST',
+        headers: {
+            'content-type': 'multipart/form-data'
+        },
         body: JSON.stringify(requete)
     });
 }
@@ -87,6 +90,7 @@ export function createPromo(myEvent) {
         //error;
       }); 
 }
+
 export function login(loginRequest) {
     return request({
         url: API_BASE_URL + "/auth/signin",

@@ -6,9 +6,13 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class FileStorageProp {
 	    private String uploadDirEvent;
 	    private String uploadDirPromo;
+	    private String uploadDirRequete;
 
 	    public String getUploadDirEvent() {
 	        return uploadDirEvent;
+	    }
+	    public String getUploadDirRequete() {
+	        return uploadDirRequete;
 	    }
 	    public String getUploadDirPromo() {
 	        return uploadDirPromo;
@@ -16,6 +20,9 @@ public class FileStorageProp {
 
 	    public void setUploadDirEvent(String uploadDirEvent) {
 	        this.uploadDirEvent = uploadDirEvent;
+	    }
+	    public void setUploadDirRequete(String uploadDirRequete) {
+	        this.uploadDirRequete = uploadDirRequete;
 	    }
 	    public void setUploadDirPromo(String uploadDirPromo) {
 	        this.uploadDirPromo= uploadDirPromo;
