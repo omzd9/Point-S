@@ -5,6 +5,8 @@ import java.util.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.*;
@@ -19,13 +21,15 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
-	 @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-	 @NotNull
-	 @JsonIgnoreProperties("order")
-	 private List<OrderProduct> orderProducts;
-
-	/*TODO
-	 * @ManyToOne
-	 * private Client client;
-	 */	 
+	@CreationTimestamp
+    private Date createdAt;
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "author_id", nullable = false)
+    private User author;
+	
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+	@NotNull
+	@JsonIgnoreProperties("order")
+	private List<OrderProduct> orderProducts;
 }

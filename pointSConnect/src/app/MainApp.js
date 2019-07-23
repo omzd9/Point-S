@@ -31,7 +31,9 @@ import UserInfo from '../UserInfo';
 import Profile from '../views/Profile';
 import Actualite from "../views/Actualite";
 import Promotions from "../views/Promotions";
-import AddOrders from '../AddOrder';
+import AddOrders from '../Commande/AddOrder';
+import ListOrders from '../Commande/ListOrder';
+import Order from '../Commande/Order';
 import Calendar from '../calendar';
 import AddRequete from '../Requete/addRequete';
 import ListRequete from '../Requete/listRequete';
@@ -186,8 +188,11 @@ export default function MainApp(props) {
               <Route path="/requetes/:id" 
                 render={(rest) => <Ticket currentUser={props.currentUser} {...rest}  />}>
               </Route>
+              <Route exact path="/orders" component={ListOrders}/>
               <Route path="/orders/add" component={AddOrders}/>
-              <Route path="/orders/" component={AddOrders}/>
+              <Route path="/orders/:id" 
+                render={(rest) => <Order currentUser={props.currentUser} {...rest}  />}>
+              </Route>
               <Route path="/home" component={Home}></Route>
               <Route path="/calendar" component={Calendar}></Route>
               <Route path="/addEvent" component={addEvent}></Route>

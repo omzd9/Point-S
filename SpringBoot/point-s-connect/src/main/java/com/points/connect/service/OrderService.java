@@ -1,6 +1,6 @@
 package com.points.connect.service;
 
-import com.points.connect.model.Order;
+import com.points.connect.model.*;
 import com.points.connect.repository.CommandRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +20,10 @@ public class OrderService {
 
     public Optional<Order> findById(Long id) {
         return commandRepository.findById(id);
+    }
+    
+    public Optional<Order> findByIdAndAuthor(Long id, User author) {
+        return commandRepository.findByIdAndAuthor(id, author);
     }
 
     public Order save(Order command) {

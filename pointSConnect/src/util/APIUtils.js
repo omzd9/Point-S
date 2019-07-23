@@ -28,9 +28,14 @@ export function createRequete(requete){
     return request({
         url: API_BASE_URL + "/requetes",
         method: 'POST',
-        headers: {
-            'content-type': 'multipart/form-data'
-        },
+        body: JSON.stringify(requete)
+    });
+}
+
+export function createOrder(requete){
+    return request({
+        url: API_BASE_URL + "/orders",
+        method: 'POST',
         body: JSON.stringify(requete)
     });
 }

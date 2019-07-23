@@ -43,12 +43,8 @@ public class RequeteController {
      
 
     @PostMapping
-    public ResponseEntity<Requete> create(@CurrentUser UserPrincipal currentUser,@RequestParam("file") MultipartFile[] files,
-    		@Valid @RequestBody Requete requete) {
-    	
-		for(int i=0; i<files.length; i++)
-			fileStorageService.storeFileRequete(files[0],requete.getId()+"-"+i);
-    	
+    public ResponseEntity<Requete> create(@CurrentUser UserPrincipal currentUser,
+    		@Valid @RequestBody Requete requete) {	
     	
     	User author = userRepository.findById(currentUser.getId())
     			.orElseThrow(() -> new ResourceNotFoundException("User", "username", currentUser.getUsername()));

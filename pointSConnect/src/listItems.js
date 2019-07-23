@@ -97,7 +97,7 @@ function OrdersListItems() {
       </ListItem>
       <Collapse in={!open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItemLink to="/orders" button className={classes.nested}>
+          <ListItemLink to="/orders/add" button className={classes.nested}>
           <ListItemIcon>
               <Create />
           </ListItemIcon>
